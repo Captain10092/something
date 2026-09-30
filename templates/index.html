@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <h1>Monthly Budget</h1>
+  <select id="month" aria-label="Month"></select>
+</header>
+<main>
+  <section class="cards">
+    <div class="card"><span>Budget</span><b id="c-budget"></b></div>
+    <div class="card"><span>Used</span><b id="c-used"></b><small id="c-pct"></small></div>
+    <div class="card" id="card-rem"><span>Remaining</span><b id="c-rem"></b></div>
+  </section>
+  <div class="bar big"><i id="c-bar"></i></div>
+  <p id="wealth" class="muted"></p>
+  <p id="alerts"></p>
+
+  <section class="panel">
+    <h2 id="form-title">Add expense</h2>
+    <input id="quick" placeholder="Quick add: “Tea 20” then Enter" autocomplete="off">
+    <div class="grid">
+      <label>Amount (₹)<input id="f-amount" inputmode="numeric"></label>
+      <label>Category<select id="f-category"></select></label>
+      <label>Description<input id="f-description"></label>
+      <label>Date<input id="f-date" type="date"></label>
+      <label class="wide">Notes (optional)<input id="f-notes"></label>
+    </div>
+    <p id="form-err" class="err"></p>
+    <button id="save">Add expense</button> <button id="cancel" class="ghost" hidden>Cancel edit</button>
+  </section>
+
+  <section>
+    <h2>Categories</h2>
+    <div id="cats" class="cats"></div>
+  </section>
+
+  <details class="panel">
+    <summary>Edit category budgets</summary>
+    <div id="budget-form" class="grid"></div>
+    <p id="budget-total"></p>
+    <button id="save-budgets">Save budgets</button>
+  </details>
+
+  <section class="panel">
+    <h2>Transactions</h2>
+    <div class="filters">
+      <input id="q" placeholder="Search description">
+      <select id="fc"><option value="">All categories</option></select>
+      <input id="fd" type="date">
+      <button id="clear" class="ghost">Clear</button>
+    </div>
+    <div class="scroll"><table>
+      <thead><tr><th>Date</th><th>Description</th><th>Category</th><th class="r">Amount</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+  </section>
+</main>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
